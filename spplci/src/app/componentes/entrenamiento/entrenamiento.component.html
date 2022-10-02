@@ -1,0 +1,89 @@
+<div class="container">
+    <h1>Nuevo Entrenamiento</h1>
+    <br>
+    <h3>Importar Muestra </h3>
+    <div class="row">
+        <br>
+        <div class="col-lg-5">
+            <input type="file" (change)="ReadExcel($event)" multiple="false" />
+        </div>
+
+    </div>
+    <br>
+
+    <h3>Registros de la muestra</h3>
+    <div class="row">
+        <div class="container">
+            <br>
+            <table id="example" class="table table-striped table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                        <th scope="col"> INo </th>
+                        <th scope="col"> Insumo </th>
+                        <th scope="col"> Venta </th>
+                        <th scope="col"> Producción </th>
+                        <th scope="col"> Fecha </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let row of ExcelData">
+                        <!--    <th scope="row">{{row.INo}}</th>
+                        <td>{{row.Insumo}}</td>
+                        <td>{{row.Venta}}</td>
+                        <td>{{row.Produccion}}</td>
+                        <td>{{row.Fecha}}</td>-->
+                        <td *ngFor="let cell of row">
+                            {{cell}}
+                        </td>
+                    </tr>
+
+
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th> # </th>
+                        <th> Insumo </th>
+                        <th> Venta </th>
+                        <th> Producción </th>
+                        <th> Fecha </th>
+                    </tr>
+                </tfoot>
+
+            </table>
+
+
+        </div>
+    </div>
+
+    <br>
+    <p>
+        <ngb-alert [dismissible]="false">
+            <strong>¡Advertencia!</strong> Recuerde que los registros deben corresponder a datos extraidos de fuentes confiables.
+        </ngb-alert>
+    </p>
+
+    <div class="row">
+        <div class="col-lg-4">
+            <button type="button" class="btn btn-success btn-lg">Procesar</button>
+        </div>
+    </div>
+    <br>
+
+
+    <ng-template #contenido let-modal>
+        <div class="modal-header">
+            <h5 class="modal-title">Modal title</h5>
+            <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p>Modal body text goes here.</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="modal.close()">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+    </ng-template>
+
+</div>
