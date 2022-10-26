@@ -2,32 +2,35 @@
     <div class="container">
         <h1 class="text-black">Usuarios</h1>
     </div>
-    <div class="container">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">No</th>
-                    <th scope="col">Nombres</th>
-                    <th scope="col">Apellidos</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Estado</th>
-                    <th scope="col">OP</th>
-                </tr>
-            </thead>
-            <tbody>
 
-            </tbody>
-            <tfoot>
-                <tr>
-                    <th scope="col">No</th>
-                    <th scope="col">Nombres</th>
-                    <th scope="col">Apellidos</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Estado</th>
-                    <th scope="col">OP</th>
-                </tr>
+    <div class="col">
+        <div class="div card">
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead>
+                        <th scope="col">ID</th>
+                        <!--<th scope="col">connection</th>-->
+                        <!--<th scope="col">debug</th>-->
+                        <th scope="col">Email</th>
+                        <!--<th sscope="col">email_verified</th>-->
+                        <!--<th scope="col">password</th>-->
+                        <!--<th scope="col">tenant</th>-->
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let usuario of usuarioArray">
+                            <td>{{usuario._id}}</td>
+                            <!--<td>{{usuario.connection}}</td>-->
+                            <!--<td>{{usuario.debug}}</td>-->
+                            <td>{{usuario.email}}</td>
+                            <!--<td>{{usuario.email_verified}}</td>-->
+                            <!--<td>{{usuario.password}}</td>-->
+                            <!--<td>{{usuario.tenant}}</td>-->
+                        </tr>
+                    </tbody>
 
-            </tfoot>
-        </table>
+                </table>
+            </div>
+        </div>
     </div>
+
 </div>

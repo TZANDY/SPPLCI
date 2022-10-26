@@ -41,7 +41,7 @@ class LinearRegression:
         return self.alpha * X +self.beta
 
 def main():
-    data = pd.read_excel('Test_venta3.xlsx')
+    data = pd.read_excel('Test_venta.xlsx')
     #data = pd.read_excel('Test_produccion1.xlsx')
 
     model = LinearRegression()

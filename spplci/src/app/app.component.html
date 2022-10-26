@@ -43,34 +43,50 @@
         <div class="collapse navbar-collapse justify-content-between px-lg-3" id="navbarCollapse">
             <div class="navbar-nav mx-auto py-0">
                 <a routerLink="home" class="nav-item nav-link active">Inicio</a>
-                <a routerLink="usuarios" class="nav-item nav-link ">Usuarios</a>
+                <a routerLink="usuarios" class="nav-item nav-link " routerLinkActive="active" *ngIf="(auth.isAuthenticated$ | async)">Usuarios</a>
                 <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown">Entrenamiento</a>
                     <div class="dropdown-menu m-0">
-                        <a class="dropdown-item" routerLink="entrenamiento">Nuevo Entrenamiento</a>
-                        <a class="dropdown-item" routerLink="entrenamiento/confifactor">Configuración de Factores</a>
-                        <a class="dropdown-item" routerLink="entrenamiento/modelo">Modelo de entrenamiento</a>
+                        <a class="dropdown-item" routerLink="entrenamiento" *ngIf="(auth.isAuthenticated$ | async)">Nuevo Entrenamiento</a>
+                        <a class="dropdown-item" routerLink="entrenamiento/confifactor" *ngIf="(auth.isAuthenticated$ | async)">Configuración de Factores</a>
+                        <a class="dropdown-item" routerLink="entrenamiento/modelo" *ngIf="(auth.isAuthenticated$ | async)">Modelo de entrenamiento</a>
                     </div>
                 </div>
 
                 <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown">Operatividad</a>
                     <div class="dropdown-menu m-0">
-                        <a href="detail.html" class="dropdown-item">Predicción</a>
-                        <a href="detail.html" class="dropdown-item">Requerimientos</a>
-                        <a href="feature.html" class="dropdown-item">Solicitudes</a>
-                        <a href="testimonial.html" class="dropdown-item">Calificaciones</a>
-                        <a href="team.html" class="dropdown-item">Historicos</a>
+                        <a class="dropdown-item" *ngIf="(auth.isAuthenticated$ | async)">Predicción</a>
+                        <a class="dropdown-item" *ngIf="(auth.isAuthenticated$ | async)">Requerimientos</a>
+                        <a class="dropdown-item" *ngIf="(auth.isAuthenticated$ | async)">Solicitudes</a>
+                        <a class="dropdown-item" *ngIf="(auth.isAuthenticated$ | async)">Calificaciones</a>
+                        <a class="dropdown-item" *ngIf="(auth.isAuthenticated$ | async)">Historicos</a>
 
                     </div>
                 </div>
                 <!--<a href="contact.html" class="nav-item nav-link">Contact</a>-->
             </div>
-            <a href="" class="btn btn-primary py-2 px-4 d-none d-lg-block">Cerrar Sesión</a>
+            <div *ngIf="(auth.isAuthenticated$ | async)">
+                <div *ngIf="auth.user$| async as user">
+                    <img [src]="user.picture" style="width: 40px ; height: 40px;" class="circular--square">
+                    <label style="padding-right: 20px ;"><b>{{user.name}}</b></label>
+                    <!--<code>{{user| json}}</code>-->
+
+                </div>
+
+            </div>
+
+            <button class="btn btn-primary" (click)="loginWithRedirect()" *ngIf="!(auth.isAuthenticated$ | async)"> Ingresar</button>
+            <!--<a class="btn btn-primary py-2 px-4 d-none d-lg-block" *ngIf="!(auth.isAuthenticated$ | async)">Ingresar</a>-->
+            <button class="btn btn-danger py-2 px-4 d-none d-lg-block" (click)="logout()" *ngIf="(auth.isAuthenticated$ | async)">Cerrar Sesión</button>
         </div>
     </nav>
 </div>
 <!-- Navbar End -->
+
+<!--
+
+-->
 
 
 
