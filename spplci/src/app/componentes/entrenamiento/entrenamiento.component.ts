@@ -1,7 +1,10 @@
+import { EntrenamodeloService } from './../../servicios/entrenamodelo.service';
 import { LoadsampleService } from './../../servicios/loadsample.service';
 import { Component, OnInit } from '@angular/core';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { MatDialogModule } from '@angular/material/dialog';
 import * as XLSX from 'xlsx';
+
+
 
 
 
@@ -19,13 +22,13 @@ export class EntrenamientoComponent implements OnInit {
 
   private fileTmp:any;
   
-  constructor(private LoadsampleService:LoadsampleService) {
+  constructor(private LoadsampleService:LoadsampleService,private EntrenamodeloService:EntrenamodeloService) {
     
   }
 
   ngOnInit(): void {
   }
-
+  
   sendFile():void{
 
     const body = new FormData();
@@ -33,9 +36,6 @@ export class EntrenamientoComponent implements OnInit {
 
     this.LoadsampleService.sendPost(body)
     .subscribe(res => console.log(res))
-
-    
-
   }
 
   ReadExcel(event:any){
@@ -75,9 +75,15 @@ export class EntrenamientoComponent implements OnInit {
 
     fileReader.readAsBinaryString(target.files[0]);
 
-    
-
   }
+
+  entrenar():void{
+    this.EntrenamodeloService.getEntrenamiento()
+    .subscribe(resp => console.log(resp))
+    
+  }
+
+
 
   
 }

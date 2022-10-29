@@ -1,5 +1,8 @@
+import { EntrenamodeloService } from './servicios/entrenamodelo.service';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms'
 import { ScrollingModule } from '@angular/cdk/scrolling';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,14 +17,15 @@ import { ConfifactorComponent } from './componentes/entrenamiento/confifactor/co
 import { ModeloComponent } from './componentes/entrenamiento/modelo/modelo.component';
 
 
-
-
-
 // Import the module from the SDK
 import { AuthModule } from '@auth0/auth0-angular';
 import { UsuarioService } from './servicios/usuario.service';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox'
+
 
 
 
@@ -41,8 +45,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     ScrollingModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatCheckboxModule,
     HttpClientModule,
     NgbModule,
     
@@ -55,7 +64,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     }),
     BrowserAnimationsModule,
   ],
-  providers: [UsuarioService],
+  providers: [UsuarioService,EntrenamodeloService],
   bootstrap: [AppComponent]
 })
 export class AppModule { 

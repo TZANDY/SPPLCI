@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
-import { Usuarios } from './modelos/usuarios';
-import { UsuarioService } from './servicios/usuario.service';
+import { MatDialog } from '@angular/material/dialog';
+import { MatCheckboxModule } from '@angular/material/checkbox'
+
 
 @Component({
   selector: 'app-root',
@@ -12,9 +13,10 @@ import { UsuarioService } from './servicios/usuario.service';
 export class AppComponent {
   title = 'spplci';
   //usuarioArray: Usuarios[]=[];
+  
 
   
-  constructor(public auth:AuthService){}
+  constructor(public auth:AuthService,public dialog:MatDialog){}
 
   loginWithRedirect(){
     this.auth.loginWithRedirect();
@@ -23,6 +25,8 @@ export class AppComponent {
   logout(){
     this.auth.logout();
   }
+
+  
 
   /*
   ngOnInit(): void{

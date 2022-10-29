@@ -1,43 +1,39 @@
 <div class="container">
-    <h2>Configuración de factores</h2>
+    <h1 style="text-align: center;">Configuración de factores</h1>
     <br>
 
-    <h4> Factor principal</h4>
 
-    <div class="form-check form-switch">
-        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-        <label class="form-check-label" for="flexSwitchCheckChecked">Estacion del Año</label>
-    </div>
-    <div class="form-check form-switch">
-        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDisabled" disabled>
-        <label class="form-check-label" for="flexSwitchCheckDisabled">Disabled switch checkbox input</label>
-    </div>
-    <div class="form-check form-switch">
-        <input class="form-check-input" type="checkbox" id="flexSwitchCheckCheckedDisabled" checked disabled>
-        <label class="form-check-label" for="flexSwitchCheckCheckedDisabled">Disabled checked switch checkbox input</label>
-    </div>
+    <h4> Factores para el entrenamiento</h4>
+
+
+    <section class="example-section">
+        <span class="example-list-section">
+          <mat-checkbox class="example-margin"
+                        [checked]="allComplete"
+                        [color]="task.color"
+                        [indeterminate]="someComplete()"
+                        (change)="setAll($event.checked)">
+            {{task.name}}
+          </mat-checkbox>
+        </span>
+        <span class="example-list-section">
+          <ul>
+            <li *ngFor="let subtask of task.subtasks">
+              <mat-checkbox [(ngModel)]="subtask.completed"
+                            [color]="subtask.color"
+                            (ngModelChange)="updateAllComplete()">
+                {{subtask.name}}
+              </mat-checkbox>
+            </li>
+          </ul>
+        </span>
+        <mat-checkbox class="example-margin" class="example-margin" [disabled]="true">Festivos</mat-checkbox>
+        <mat-checkbox class="example-margin" class="example-margin" [disabled]="true">Fines de semana</mat-checkbox>
+    </section>
+
 
 </div>
-<div class="container">
-    <br>
-    <h4> Factor secundario</h4>
-    <div class="form-check form-switch">
-        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-        <label class="form-check-label" for="flexSwitchCheckChecked">Invierno</label>
-    </div>
-    <div class="form-check form-switch">
-        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" disabled>
-        <label class="form-check-label" for="flexSwitchCheckChecked">Primavera</label>
-    </div>
-    <div class="form-check form-switch">
-        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" disabled>
-        <label class="form-check-label" for="flexSwitchCheckChecked">Verano</label>
-    </div>
-    <div class="form-check form-switch">
-        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-        <label class="form-check-label" for="flexSwitchCheckChecked">Otoño</label>
-    </div>
-</div>
+
 <br><br><br>
 <div class="container">
     <div class="row">

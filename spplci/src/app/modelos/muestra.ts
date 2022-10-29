@@ -1,5 +1,6 @@
 export class Muestra {
-    _id!: string;
+    id!: string;
+    insumo!: string;
     venta!:number;
     produccion!:number;
     fecha!:string;

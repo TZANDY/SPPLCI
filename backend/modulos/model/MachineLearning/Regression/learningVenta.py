@@ -41,8 +41,10 @@ class LinearRegression:
         return self.alpha * X +self.beta
 
 def main():
-    data = pd.read_excel('Test_venta.xlsx')
+    data = pd.read_excel('./modulos/model/MachineLearning/Regression/Test_venta.xlsx')
+    #data = pd.read_excel('./modulos/static/uploads/test.xlsx')
     #data = pd.read_excel('Test_produccion1.xlsx')
+    #C:\Users\Infan\OneDrive\Documentos\GitHub\TP\SPPLCI\backend\modulos\static\uploads\test.xlsx
 
     model = LinearRegression()
     x = data['Dia'].values
