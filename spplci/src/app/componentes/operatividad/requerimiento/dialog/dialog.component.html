@@ -1,0 +1,82 @@
+<h1 mat-dialog-title>Nuevo Requerimiento</h1>
+<div mat-dialog-content>
+    <form [formGroup]="requerimientoForm" method="POST">
+        <mat-form-field appearance="outline">
+            <mat-label>Nombre del Insumo</mat-label>
+            <input formControlName="nombreInsumo" matInput placeholder="Insumo">
+
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Categoria del Insumo</mat-label>
+            <mat-select formControlName="categoriaInsumo" placeholder="Categoria">
+                <mat-option value="Pescado">Pescados</mat-option>
+                <mat-option value="Mariscos">Mariscos</mat-option>
+                <mat-option value="Moluscos">Moluscos</mat-option>
+                <mat-option value="Crustáceos">Crustáceos</mat-option>
+                <mat-option value="Otros">Otros</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="outline">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Seleccione una fecha</mat-label>
+                <input formControlName="fecha" matInput [matDatepicker]="picker">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker">
+                    <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                </mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" id="inputcantidad">
+            <mat-label>Cantidad requerida</mat-label>
+            <input formControlName="cantidad" type="number" matInput placeholder="Cantidad">
+            <mat-hint>Ej. 20, 20.1, 20.123 </mat-hint>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Unidad de Medida</mat-label>
+            <mat-select formControlName="unidad" placeholder="Unidad">
+                <mat-option value="Miligramo">Miligramo (mg.)</mat-option>
+                <mat-option value="Gramos">Gramos (gr.)</mat-option>
+                <mat-option value="Kilogramo">Kilogramo (kg.)</mat-option>
+                <mat-option value="Tonelada">Tonelada (TON.)</mat-option>
+            </mat-select>
+
+        </mat-form-field>
+        <hr>
+        <mat-form-field appearance="fill">
+            <mat-label>Ingresa tu email</mat-label>
+            <input type="email" formControlName="email" matInput placeholder="pat@example.com" [formControl]="email" required>
+            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" floatLabel="always">
+            <mat-label>Monto de Desembolso</mat-label>
+            <input formControlName="monto" matInput type="number" class="example-right-align" placeholder="0">
+            <span matPrefix>S/.&nbsp;</span>
+            <span matSuffix>.00</span>
+        </mat-form-field>
+
+        <mat-radio-group formControlName="estado" class="example-radio-group">
+            <mat-label>Estado del requerimiento</mat-label>
+            <mat-radio-button class="example-radio-button" *ngFor="let estado of estadoRequerimiento" [value]="estado">
+                {{estado}}
+            </mat-radio-button>
+        </mat-radio-group>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Comentario</mat-label>
+            <textarea formControlName="comentario" matInput></textarea>
+
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions [align]="'end'">
+    <button mat-raised-button color="warn" mat-dialog-close>Cancelar</button>
+    <button mat-raised-button color="primary" (click)="nuevoRequerimiento()" type="submit">Aceptar</button>
+
+</div>

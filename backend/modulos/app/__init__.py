@@ -25,5 +25,5 @@ CORS(app)
 app.config['MONGO_URI']=MONGO_URI
 app.json_encoder = JSONEncoder
 mongo = PyMongo(app)
-from app.controller import usuarios,entrenamiento,nuevoentrenamiento
+from app.controller import usuarios,files,nuevoentrenamiento,requerimiento
 

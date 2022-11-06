@@ -5,20 +5,39 @@ from sklearn.preprocessing import MinMaxScaler
 from keras.models import Sequential
 from keras.layers import Dense,LSTM,Dropout
 import os
+from datetime import datetime
+from sklearn.metrics import mean_squared_error
+import json
+
+codigo1=""
+
+
+def formatearnombre():
+    codigo1 = str(datetime.now())
+    cadena_codigo = str(codigo1.replace(':','').replace('-','').replace(' ','')[0:14])
+    filename2 = os.path.join(current_dir,"public/images/"+cadena_codigo+"_"+"test.jpg")
+    plt.savefig(filename2)
+    return True
 
 current_dir = os.path.dirname(os.path.realpath(__file__))
 filename1 = os.path.join(current_dir,"public/uploads/test.csv")
-filename2 = os.path.join(current_dir,"public/images/test.jpg")
+#filename2 = os.path.join(current_dir,"public/images/"+formatearnombre()+"_"+"test.jpg")
 
-#
+#Metodo de visualizacion de la prediccion
 def visualizar(real,prediccion):
     plt.plot(real[0:len(prediccion)],color='red',label='cantidad maxima real de venta')
     plt.plot(prediccion,color='blue',label='Prediccion de la venta')
     plt.xlabel('Tiempo')
     plt.ylabel('Cantidad')
     plt.legend()
-    plt.savefig(filename2)
+    plt.grid(True)
+    formatearnombre()
+    guardarmodelo()
+    #plt.savefig(filename2)
     plt.show()
+    
+    #\modulos\model\MachineLearning\NeuralNets\NeuralNetwork\public\docs\modeloBin
+
 
 dataset = pd.read_csv(filename1,index_col='Date',parse_dates=['Date'])
 #C:\Users\Infan\OneDrive\Documentos\GitHub\TP\SPPLCI\backend\modulos\static\uploads\test.xlsx
@@ -93,5 +112,19 @@ prediccion = regresor.predict(xTest)
 # desescalamos la prediccion para que se encuentre entre valores normales
 prediccion = sc.inverse_transform(prediccion)
 
+def guardarmodelo():
+    codigo1 = str(datetime.now())
+    cadena_codigo = str(codigo1.replace(':','').replace('-','').replace(' ','')[0:14])
+    filename2 = os.path.join(current_dir,"public/docs/modeloBin/"+cadena_codigo+"_"+"modelo.h5")
+    regresor.save(filename2)
+
+def dato():
+    arr = np.array(prediccion)
+    json_str = json.dumps({'data':arr.tolist()})
+    return json_str
+
 def main():
     visualizar(testSet.values,prediccion)
+    
+
+

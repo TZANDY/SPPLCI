@@ -8,12 +8,16 @@ import { Observable } from 'rxjs';
 export class EntrenamodeloService {
 
 
-  private BASE_URL ='http://localhost:5000/entrenamiento'
+  private BASE_URL ='http://localhost:5000'
 
 
   constructor(private http:HttpClient) { }
   
   getEntrenamiento():Observable<any>{
-    return this.http.get(`${this.BASE_URL}/nuevo-entrenamiento`)
+    return this.http.get(`${this.BASE_URL}/entrenamiento/nuevo-entrenamiento`)
+  }
+
+  getNuevoEntrenamiento():Observable<any>{
+    return this.http.get(`${this.BASE_URL}/files/new-training`)
   }
 }

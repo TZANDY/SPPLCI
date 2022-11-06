@@ -56,11 +56,11 @@
                 <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown">Operatividad</a>
                     <div class="dropdown-menu m-0">
-                        <a class="dropdown-item" *ngIf="(auth.isAuthenticated$ | async)">Predicción</a>
-                        <a class="dropdown-item" *ngIf="(auth.isAuthenticated$ | async)">Requerimientos</a>
-                        <a class="dropdown-item" *ngIf="(auth.isAuthenticated$ | async)">Solicitudes</a>
-                        <a class="dropdown-item" *ngIf="(auth.isAuthenticated$ | async)">Calificaciones</a>
-                        <a class="dropdown-item" *ngIf="(auth.isAuthenticated$ | async)">Historicos</a>
+                        <a class="dropdown-item" routerLink="operatividad/prediccion" *ngIf="(auth.isAuthenticated$ | async)">Predicción</a>
+                        <a class="dropdown-item" routerLink="operatividad/requerimiento" *ngIf="(auth.isAuthenticated$ | async)">Requerimientos</a>
+                        <a class="dropdown-item" routerLink="operatividad/solicitudes" *ngIf="(auth.isAuthenticated$ | async)">Solicitudes</a>
+                        <a class="dropdown-item" routerLink="operatividad/calificaciones" *ngIf="(auth.isAuthenticated$ | async)">Calificaciones</a>
+                        <a class="dropdown-item" routerLink="operatividad/historicos" *ngIf="(auth.isAuthenticated$ | async)">Historicos</a>
 
                     </div>
                 </div>

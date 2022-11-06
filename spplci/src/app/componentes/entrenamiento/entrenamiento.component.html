@@ -1,5 +1,5 @@
 <div class="container">
-    <h1 style="text-align: center;">Nuevo Entrenamiento</h1>
+    <h1 style="text-align: center;">Entrenamiento de la muestra</h1>
     <hr>
     <br>
 
@@ -56,29 +56,26 @@
                             <th> Fecha </th>
                         </tr>
                     </tfoot>
-
                 </table>
             </cdk-virtual-scroll-viewport>
-
-
         </div>
-
     </div>
-
     <hr>
     <br>
-    <div class="row">
-        <div class="col-lg-1">
-            <button type="button" class="btn btn-success btn-lg" (click)="sendFile()">Enviar muestra</button>
+    <div class="btn-group">
+        <div class="row-lg-2">
+            <button mat-raised-button color="primary" (click)="sendFile()">Enviar muestra</button>
         </div>
-        <div class="col-lg-1">
-
+        <div class="row-lg-2">
+            <button mat-raised-button color="warn" (click)="entrenar()">Entrenar muestra</button>
         </div>
-        <button type="button" class="btn btn-danger btn-lg" (click)="entrenar()">Entrenar</button>
 
-
-
+        <div class="row-lg-2">
+            <button mat-raised-button color="accent" (click)="nuevo()">Nuevo Entrenamiento</button>
+        </div>
     </div>
+    <br>
+
     <br>
     <div class="row">
         <ngb-alert [dismissible]="false">

@@ -1,0 +1,80 @@
+<div class="container">
+    <h1 style="text-align: center;">Predicción</h1>
+    <hr>
+    <br>
+    <h2>Resultados</h2>
+    <div class="row">
+        <div class="col">
+            <div class="div card">
+                <div class="card-header">
+                    <h3>Gráficas</h3>
+                </div>
+
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <th scope="col">Nombre del Archivo</th>
+
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let imagenes of imagenesarray">
+                                <td>{{imagenes}}</td>
+
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <h2>Operaciones</h2>
+    <div class="container">
+        <form [formGroup]="form">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Ingrese nombre del archivo</mat-label>
+                <input matInput formControlName="nombre" placeholder="imagen.jpg">
+            </mat-form-field>
+            <button mat-mini-fab color="primary" (click)="getimage()" [disabled]="form.invalid">ver</button>
+            <button mat-mini-fab color="warn" (click)="deleteimage()" [disabled]="form.invalid"><mat-icon>delete</mat-icon></button>
+            <button mat-mini-fab color="accent" (click)="downloadimage()" [disabled]="form.invalid"><mat-icon>download</mat-icon></button>
+        </form>
+        <br>
+    </div>
+    <div class="container">
+        <h3>Vista Previa</h3>
+        <img [src]="imageToShow" alt="resultado">
+        <ng-template #noImageFound>
+            <img src="fallbackImage.png" alt="Fallbackimage">
+        </ng-template>
+    </div>
+
+    <!--
+    <div class="row">
+        <h2>Vista general</h2>
+    </div>
+    <p>Siguiendo un analisis una funcion lineal, se muestra la tendencia de la epoca</p>
+    <div class="row">
+        <div class="col-lg-3">
+            <img src="" alt="Grafica basada en una funcion lineal" style="width: 200px;height: 200px;">
+
+        </div>
+
+    </div>
+    <hr>
+    <br>
+    <div class="row">
+        <h2>Vista </h2>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            <img src="" style="width: 200px;height: 200px;">
+        </div>
+        <div class="col-lg-3">
+            <img src="" style="width: 200px;height: 200px;">
+        </div>
+
+    </div>-->
+
+</div>

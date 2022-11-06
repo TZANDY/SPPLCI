@@ -8,6 +8,11 @@ import { ModeloComponent } from './componentes/entrenamiento/modelo/modelo.compo
 
 //import { AuthGuard } from '@auth0/auth0-angular';
 import { AuthGuard } from './guards/auth.guard';
+import { PrediccionComponent } from './componentes/operatividad/prediccion/prediccion.component';
+import { RequerimientoComponent } from './componentes/operatividad/requerimiento/requerimiento.component';
+import { SolicitudesComponent } from './componentes/operatividad/solicitudes/solicitudes.component';
+import { CalificacionesComponent } from './componentes/operatividad/calificaciones/calificaciones.component';
+import { HistoricosComponent } from './componentes/operatividad/historicos/historicos.component';
 
 //Crear una constante
 const routes: Routes = [
@@ -19,6 +24,11 @@ const routes: Routes = [
   {path:'entrenamiento',component:EntrenamientoComponent,canActivate:[AuthGuard]},
   {path:'entrenamiento/confifactor',component:ConfifactorComponent,canActivate:[AuthGuard]},
   {path:'entrenamiento/modelo',component:ModeloComponent,canActivate:[AuthGuard]},
+  {path:'operatividad/prediccion',component:PrediccionComponent,canActivate:[AuthGuard]},
+  {path:'operatividad/requerimiento',component:RequerimientoComponent,canActivate:[AuthGuard]},
+  {path:'operatividad/solicitudes',component:SolicitudesComponent,canActivate:[AuthGuard]},
+  {path:'operatividad/calificaciones',component:CalificacionesComponent,canActivate:[AuthGuard]},
+  {path:'operatividad/historicos',component:HistoricosComponent,canActivate:[AuthGuard]}
 
   
 

@@ -82,6 +82,10 @@ export class EntrenamientoComponent implements OnInit {
     .subscribe(resp => console.log(resp))
     
   }
+  nuevo():void{
+    this.EntrenamodeloService.getNuevoEntrenamiento()
+    .subscribe(resp => console.log(resp))
+  }
 
 
 
