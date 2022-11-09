@@ -9,7 +9,10 @@ from datetime import datetime
 from sklearn.metrics import mean_squared_error
 import json
 
+
 codigo1=""
+
+
 
 
 def formatearnombre():
@@ -34,8 +37,10 @@ def visualizar(real,prediccion):
     formatearnombre()
     guardarmodelo()
     #plt.savefig(filename2)
-    plt.show()
-    
+    #plt.show()
+    #print(prediccion[[0][0]],prediccion[[1][0]],prediccion[[2][0]],prediccion[[3][0]])
+    #print(len(prediccion))
+    #dato()
     #\modulos\model\MachineLearning\NeuralNets\NeuralNetwork\public\docs\modeloBin
 
 
@@ -118,10 +123,11 @@ def guardarmodelo():
     filename2 = os.path.join(current_dir,"public/docs/modeloBin/"+cadena_codigo+"_"+"modelo.h5")
     regresor.save(filename2)
 
-def dato():
-    arr = np.array(prediccion)
-    json_str = json.dumps({'data':arr.tolist()})
-    return json_str
+def exportarResultados():
+    
+    return prediccion
+
+
 
 def main():
     visualizar(testSet.values,prediccion)

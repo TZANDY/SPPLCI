@@ -9,6 +9,5 @@ export class Requerimiento {
     monto!:number;
     estado!:string;
     comentario!:string;
-    CreateAt!:Date;
     
 }

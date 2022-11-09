@@ -17,4 +17,15 @@ export class RequerimientService {
   getRequeriment():Observable<any>{
     return this.http.get(`${this.BASE_URL}/listar-requerimiento`);
   }
+
+  deleteRequeriment(_id:any):Observable<any>{
+    return this.http.delete(`${this.BASE_URL}/delete/${_id}`)
+  }
+
+  updateRequeriment(data:any,_id:any):Observable<any>{
+    return this.http.put(`${this.BASE_URL}/update/${_id}`,data)
+
+  }
+
+
 }

@@ -51,8 +51,10 @@
         <mat-form-field appearance="fill">
             <mat-label>Ingresa tu email</mat-label>
             <input type="email" formControlName="email" matInput placeholder="pat@example.com" [formControl]="email" required>
-            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+            <mat-error>{{getErrorMessage()}}</mat-error>
         </mat-form-field>
+
+        <!--*ngIf="email.invalid"-->
 
         <mat-form-field appearance="fill" floatLabel="always">
             <mat-label>Monto de Desembolso</mat-label>
@@ -70,13 +72,13 @@
 
         <mat-form-field appearance="outline">
             <mat-label>Comentario</mat-label>
-            <textarea formControlName="comentario" matInput></textarea>
-
+            <textarea matInput formControlName="comentario"></textarea>
         </mat-form-field>
+
     </form>
 </div>
 <div mat-dialog-actions [align]="'end'">
     <button mat-raised-button color="warn" mat-dialog-close>Cancelar</button>
-    <button mat-raised-button color="primary" (click)="nuevoRequerimiento()" type="submit">Aceptar</button>
+    <button mat-raised-button color="primary" (click)="nuevoRequerimiento()" type="submit">{{actionBtn}}</button>
 
 </div>

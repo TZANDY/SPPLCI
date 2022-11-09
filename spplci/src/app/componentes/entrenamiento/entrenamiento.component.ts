@@ -78,11 +78,15 @@ export class EntrenamientoComponent implements OnInit {
   }
 
   entrenar():void{
+    var ObjRes = []
     this.EntrenamodeloService.getEntrenamiento()
-    .subscribe(resp => console.log(resp))
+    .subscribe(resp => {
+      console.log(resp);
+      alert("Entrenamiento Finalizado")})
     
   }
   nuevo():void{
+    
     this.EntrenamodeloService.getNuevoEntrenamiento()
     .subscribe(resp => console.log(resp))
   }

@@ -59,8 +59,6 @@ def get_directorio():
             imagenes.append(fichero)
              
     return jsonify({"data":imagenes})
-       
-
 
 #ENVIAR IMAGEN AL NAVEGADOR EL ARCHIVO
 @cross_origin
@@ -75,7 +73,7 @@ def get_file(name_file):
 def download_file(name_file):
     return send_from_directory(path_file,path=name_file,as_attachment=True)
 
-#DESCARGAR EL ARCHIVO
+#BORRAR EL ARCHIVO
 @cross_origin
 @app.route("/images/delete", methods = ['DELETE'])
 def delete_file():

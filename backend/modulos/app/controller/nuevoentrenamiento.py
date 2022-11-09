@@ -4,6 +4,8 @@ from app import app,mongo
 from flask_cors import cross_origin
 import shutil
 from datetime import datetime
+import json
+import numpy as np
 
 from modulos.model.MachineLearning.Regression import learningVenta
 
@@ -23,8 +25,8 @@ def entrenar():
     #learningVenta.main()
     from modulos.model.MachineLearning.NeuralNets.NeuralNetwork import ann_lstm1
     ann_lstm1.main()
-    listadoresultados= list(ann_lstm1.dato())
-    return jsonify({"transaccion":True,"message":"Entrenamiento exitoso","data":listadoresultados})
+    resultados()
+    return jsonify({"transaccion":True,"message":"Entrenamiento exitoso"})
 
 #guardar copia
 @cross_origin
@@ -47,3 +49,42 @@ def new_copy_files():
         #shutil.copy('./modulos/model/MachineLearning/NeuralNets/NeuralNetwork/public/uploads/'+filename,'./modulos/model/MachineLearning/NeuralNets/NeuralNetwork/public/docs/'+filename)
     except:
         return jsonify({"status":"404"}) 
+
+
+def resultados():
+    from modulos.model.MachineLearning.NeuralNets.NeuralNetwork import ann_lstm1
+    resultado = ann_lstm1.dato()
+    for fila in resultado:
+        for columna in fila:
+            print(columna)
+    #return json.dumps({'res':arr},cls=MyEncoder)
+
+class MyEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, np.integer):
+            return int(obj)
+        elif isinstance(obj, np.floating):
+            return float(obj)
+        elif isinstance(obj, np.ndarray):
+            return obj.tolist()
+        elif isinstance(obj, np.str_):
+            return obj.tolist()
+        else:
+            return super(MyEncoder, self).default(obj)
+
+#def dato():
+    #resultado = {"res":cont}
+#    arr = []
+#    for fila in prediccion:
+#        for columna in fila:
+#            arr = np.array(float(columna))
+            
+        
+    #print(prediccion[[0][0]])
+    #print(arr[1])
+    #arr = np.array(resultado)
+    
+    
+    #json_str = json.dumps({'res':arr},cls=NpEncoder)
+    #return json_str
+#    return json.dumps({'res':arr},cls=MyEncoder)  

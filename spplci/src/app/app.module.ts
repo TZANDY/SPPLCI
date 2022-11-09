@@ -41,6 +41,17 @@ import { MatSelectModule} from '@angular/material/select';
 import { MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatRadioModule} from '@angular/material/radio';
+import { RequerimientService } from './servicios/requerimient.service';
+import { MatPaginatorModule} from '@angular/material/paginator';
+import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatListModule} from '@angular/material/list';
+import { MatGridListModule} from '@angular/material/grid-list';
+import { MatCardModule} from '@angular/material/card';
+
+
+import { MatSortModule} from '@angular/material/sort';
+
+
 
 
 
@@ -83,6 +94,12 @@ import { MatRadioModule} from '@angular/material/radio';
     MatDatepickerModule,
     MatNativeDateModule,
     MatRadioModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatProgressSpinnerModule,
+    MatCardModule,
+    MatListModule,
+    MatGridListModule,
     ReactiveFormsModule,
         
     // Import the module into the application, with configuration
@@ -94,7 +111,7 @@ import { MatRadioModule} from '@angular/material/radio';
     }),
     BrowserAnimationsModule,
   ],
-  providers: [UsuarioService,EntrenamodeloService,PrediccionService],
+  providers: [UsuarioService,EntrenamodeloService,PrediccionService,RequerimientService],
   bootstrap: [AppComponent]
 })
 export class AppModule { 

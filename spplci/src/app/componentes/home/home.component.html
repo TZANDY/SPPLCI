@@ -13,9 +13,9 @@
                         <!--<a class="dropdown-item" href="#">Courses 3</a>-->
                     </div>
                 </div>
-                <input type="text" class="form-control border-light" style="padding: 30px 25px;" placeholder="Ingrese el codigo del documento">
+                <input matInput type="search" class="form-control border-light" style="padding: 30px 25px;" placeholder="Ingrese el codigo del documento">
                 <div class="input-group-append">
-                    <button class="btn btn-secondary px-4 px-lg-5">Buscar</button>
+                    <button mat-button class="btn btn-secondary px-4 px-lg-5">Buscar</button>
                 </div>
             </div>
         </div>
@@ -24,6 +24,24 @@
 
 </div>
 <!-- Header End -->
+
+<section>
+    <mat-grid-list cols="4" rowHeight="100px">
+        <mat-grid-tile [colspan]="1" [rowspan]="1" [style.background]="'lightgreen'">
+            texto1
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1" [style.background]="'lightgreen'">
+            texto1
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1" [style.background]="'lightgreen'">
+            texto1
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1" [style.background]="'lightgreen'">
+            texto1
+        </mat-grid-tile>
+    </mat-grid-list>
+
+</section>
 
 <!--
 <section>
