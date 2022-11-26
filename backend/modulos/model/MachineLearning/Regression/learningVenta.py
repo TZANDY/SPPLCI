@@ -41,14 +41,15 @@ class LinearRegression:
         return self.alpha * X +self.beta
 
 def main():
-    data = pd.read_excel('./modulos/model/MachineLearning/Regression/Test_venta3.xlsx')
+    data = pd.read_csv('./modulos/model/MachineLearning/NeuralNets/NeuralNetwork/public/uploads/test.csv')
+    #C:\Users\Infan\OneDrive\Documentos\GitHub\TP\SPPLCI\backend\modulos\model\MachineLearning\NeuralNets\NeuralNetwork\public\uploads\test.xlsx
     #data = pd.read_excel('./modulos/static/uploads/test.xlsx')
     #data = pd.read_excel('Test_produccion1.xlsx')
     #C:\Users\Infan\OneDrive\Documentos\GitHub\TP\SPPLCI\backend\modulos\static\uploads\test.xlsx
 
     model = LinearRegression()
-    x = data['Dia'].values
-    y = data['Venta'].values
+    x = data['dia'].values
+    y = data['venta'].values
     #y = data['Produccion'].values
 
     model.fit(x,y)

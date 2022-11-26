@@ -18,7 +18,7 @@ export class PrediccionService {
   }
 
   getimage(name_file:string):Observable<Blob>{
-    return this.http.get(`${this.BASE_URL_IMG}/${name_file}`,{responseType: 'blob'})
+    return this.http.get(`${this.BASE_URL_IMG}/test.jpg`,{responseType: 'blob'})
   }
 
   deleteimage(){

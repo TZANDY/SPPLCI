@@ -47,9 +47,15 @@ import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MatListModule} from '@angular/material/list';
 import { MatGridListModule} from '@angular/material/grid-list';
 import { MatCardModule} from '@angular/material/card';
+import { MatExpansionModule} from '@angular/material/expansion';
+import { MatProgressBarModule} from '@angular/material/progress-bar';
+
 
 
 import { MatSortModule} from '@angular/material/sort';
+import { DialogImagenComponent } from './componentes/operatividad/prediccion/dialog-imagen/dialog-imagen.component';
+import { ResultadosService } from './servicios/resultados.service';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 
 
@@ -72,7 +78,8 @@ import { MatSortModule} from '@angular/material/sort';
     SolicitudesComponent,
     CalificacionesComponent,
     HistoricosComponent,
-    DialogComponent
+    DialogComponent,
+    DialogImagenComponent
 
   ],
   imports: [
@@ -100,7 +107,10 @@ import { MatSortModule} from '@angular/material/sort';
     MatCardModule,
     MatListModule,
     MatGridListModule,
+    MatExpansionModule,
     ReactiveFormsModule,
+    MatProgressBarModule,
+    NgxChartsModule,
         
     // Import the module into the application, with configuration
     AuthModule.forRoot({
@@ -111,7 +121,7 @@ import { MatSortModule} from '@angular/material/sort';
     }),
     BrowserAnimationsModule,
   ],
-  providers: [UsuarioService,EntrenamodeloService,PrediccionService,RequerimientService],
+  providers: [UsuarioService,EntrenamodeloService,PrediccionService,RequerimientService,ResultadosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { 

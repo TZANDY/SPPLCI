@@ -35,19 +35,37 @@ export class EntrenamientoComponent implements OnInit {
     body.append('myFile', this.fileTmp.fileRaw,this.fileTmp.fileName)
 
     this.LoadsampleService.sendPost(body)
-    .subscribe(res => console.log(res))
+    .subscribe({
+      next:(res)=>{
+        alert("Muestra enviada con exito");
+        console.log(res);
+      },error:()=>{
+        alert("Error mientras se enviaba la muestra");
+      }
+    })
+  }
+
+  cerrar(alerta:any){
+    //document.getElementById(alerta).style.display="none"
+
   }
 
   ReadExcel(event:any){
     
     // PARA IMPORTAR LA MUESTRA AL BACKEND
     const [file] = event.target.files;
-    console.log(file);
+    console.log(file.name);
+    var nomeFormulario = file.name
+    
+    if(nomeFormulario.endsWith('.xmls')){
+      alert("si")
+    }
 
     this.fileTmp={
       fileRaw:file,
       fileName:file.name
     }
+    
     
     // PARA VACIAR EN LA TABLA DE MUESTRA
     const target:DataTransfer = <DataTransfer> (event.target);
@@ -57,20 +75,15 @@ export class EntrenamientoComponent implements OnInit {
 
     fileReader.onload = (e:any)=>{
       const bstr: string = e.target.result;
-
-      const workBook:XLSX.WorkBook = XLSX.read(bstr,{type:'binary'});
-      
+      const workBook:XLSX.WorkBook = XLSX.read(bstr,{type:'binary'});      
       var sheetNames:string = workBook.SheetNames[0];
-
       const ws:XLSX.WorkSheet = workBook.Sheets[sheetNames];
       //console.log(ws);
-
       this.ExcelData = (XLSX.utils.sheet_to_json(ws,{header:1}));
       //console.log(this.ExcelData);
       let registro = [];
       registro = this.ExcelData;
       console.log(registro);
-
     }
 
     fileReader.readAsBinaryString(target.files[0]);
@@ -78,17 +91,30 @@ export class EntrenamientoComponent implements OnInit {
   }
 
   entrenar():void{
-    var ObjRes = []
     this.EntrenamodeloService.getEntrenamiento()
-    .subscribe(resp => {
-      console.log(resp);
-      alert("Entrenamiento Finalizado")})
+    .subscribe({
+      next:(res)=>{
+        alert("Entrenamiento Realizado");
+        console.log(res);
+      },error:()=>{
+        alert("Error mientras durante el entrenamiento");
+      }
+    })
     
   }
+
   nuevo():void{
+    if (confirm("¿Desea realizar un nuevo entrenamiento?")){
+      this.EntrenamodeloService.getNuevoEntrenamiento()
+      .subscribe({
+        next:(res)=>{
+          console.log(res);
+        },error:()=>{
+          alert("Error mientras se generaba un nuevo entrenamiento");
+        }
+    })
+    }
     
-    this.EntrenamodeloService.getNuevoEntrenamiento()
-    .subscribe(resp => console.log(resp))
   }
 
 

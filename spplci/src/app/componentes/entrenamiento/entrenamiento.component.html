@@ -6,14 +6,29 @@
     <div class="row">
         <h3>Importar Muestra </h3>
         <br>
+
+
+        <br>
         <div class="col-lg-5" class="custom-file">
             <input id="uploadFile" type="file" (change)="ReadExcel($event)" multiple="false" />
             <br>
             <br>
         </div>
+        <br>
+        <div>
+            <ngb-alert id="uno" type="success" [dismissible]="true" (close)="cerrar('uno')">
+                <strong>¡Recordatorio!</strong> El nombre de la muestra debe ser <strong>"test.csv"</strong>.
+            </ngb-alert>
+            <ngb-alert id="dos" type="primary" [dismissible]="true" (close)="cerrar('dos')">
+                <strong>¡Recordatorio!</strong> La muestra debe corresponder a dos semanas como mínimo, iniciando con el dia <strong>lunes</strong> y finalizando el <strong>domingo</strong>.
+            </ngb-alert>
+            <ngb-alert id="tres" type="info" [dismissible]="true" (close)="cerrar('tres')">
+                <strong>¡Recordatorio!</strong> Recuerde que los registros deben corresponder a datos extraidos de fuentes confiables.
+            </ngb-alert>
+        </div>
 
     </div>
-    <br>
+
     <hr>
     <br>
 
@@ -26,13 +41,7 @@
             <cdk-virtual-scroll-viewport itemSize="8">
                 <table id="example" class="table table-striped table-bordered">
                     <thead>
-                        <tr>
-                            <th scope="col"> # </th>
-                            <th scope="col"> Insumo </th>
-                            <th scope="col"> Venta </th>
-                            <th scope="col"> Producción </th>
-                            <th scope="col"> Fecha </th>
-                        </tr>
+
                     </thead>
                     <tbody>
 
@@ -49,11 +58,11 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th> # </th>
-                            <th> Insumo </th>
-                            <th> Venta </th>
-                            <th> Producción </th>
                             <th> Fecha </th>
+                            <th> Día </th>
+                            <th> Mes </th>
+                            <th> Venta </th>
+                            <th> Codigo de insumo </th>
                         </tr>
                     </tfoot>
                 </table>

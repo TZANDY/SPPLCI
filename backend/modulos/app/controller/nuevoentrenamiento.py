@@ -9,15 +9,10 @@ import numpy as np
 
 from modulos.model.MachineLearning.Regression import learningVenta
 
-
-
 ROOT_PATH = os.environ.get('ROOT_PATH')
 
-
-
 path_file_muestra = os.getcwd() + "/modulos/model/MachineLearning/NeuralNets/NeuralNetwork/public/uploads/"
-
-
+path_file_image = os.getcwd()+"/modulos/model/MachineLearning/NeuralNets/NeuralNetwork/public/images/"
 
 @cross_origin
 @app.route('/entrenamiento/nuevo-entrenamiento', methods = ['GET'])
@@ -25,8 +20,10 @@ def entrenar():
     #learningVenta.main()
     from modulos.model.MachineLearning.NeuralNets.NeuralNetwork import ann_lstm1
     ann_lstm1.main()
-    resultados()
-    return jsonify({"transaccion":True,"message":"Entrenamiento exitoso"})
+    resultado = ann_lstm1.obtenerResultados()
+    return json.dumps({'res':resultado},cls=MyEncoder)
+    #resultados()
+    #return jsonify({"transaccion":True,"message":"Entrenamiento exitoso"})
 
 #guardar copia
 @cross_origin
@@ -37,12 +34,15 @@ def new_copy_files():
     cadena_codigo = codigo1.replace(':','').replace('-','').replace(' ','')
     try:
         filename = 'test.xlsx'
+        imagename = 'test.jpg'
         shutil.copy(path_file_muestra+filename,path_file_muestra+str(cadena_codigo[0:14])+"-"+filename)
-        if os.path.isfile(path_file_muestra + filename ) == False:
+        shutil.copy(path_file_image+imagename,path_file_image+str(cadena_codigo[0:14])+"-"+imagename)
+        if os.path.isfile(path_file_muestra + filename ) == False | os.path.isfile(path_file_image + imagename ) == False:
             return jsonify({"message":"Archivo no encontrado"})
         else:
             try:
                 os.remove(path_file_muestra+filename)
+                os.remove(path_file_image+imagename)
                 return jsonify({'status':'200'})
             except OSError:
                 return jsonify({"ERROR":OSError,"status":"404"})
@@ -50,14 +50,14 @@ def new_copy_files():
     except:
         return jsonify({"status":"404"}) 
 
-
+#obtener resultados
+@cross_origin
+@app.route('/resultados', methods = ['GET'])
 def resultados():
     from modulos.model.MachineLearning.NeuralNets.NeuralNetwork import ann_lstm1
-    resultado = ann_lstm1.dato()
-    for fila in resultado:
-        for columna in fila:
-            print(columna)
-    #return json.dumps({'res':arr},cls=MyEncoder)
+    resultado = ann_lstm1.obtenerResultados()
+    #return jsonify({"data":resultado})
+    return json.dumps({'res':resultado},cls=MyEncoder)
 
 class MyEncoder(json.JSONEncoder):
     def default(self, obj):

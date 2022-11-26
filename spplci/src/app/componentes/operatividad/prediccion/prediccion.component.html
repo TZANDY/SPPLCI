@@ -1,9 +1,67 @@
 <div class="container">
-    <h1 style="text-align: center;">Predicción</h1>
-    <hr>
+    <h1 style="text-align: center;">Predicción y Resultados</h1>
+    <mat-divider></mat-divider>
+
     <br>
-    <h2>Resultados</h2>
-    <div class="row">
+    <h2>Resultados Cuantitativos</h2>
+    <div class="container">
+
+        <mat-form-field appearance="standard">
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+        </mat-form-field>
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" matSort>
+
+                <!-- ID Column -->
+                <ng-container matColumnDef="no">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> No </th>
+                    <td mat-cell *matCellDef="let row">{{row.Dia}}</td>
+                </ng-container>
+
+                <!-- ID Column -->
+                <ng-container matColumnDef="diaSemana">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Dia de la semana </th>
+                    <td mat-cell *matCellDef="let row">{{row.DiaSemana}}</td>
+                </ng-container>
+
+                <!-- Progress Column -->
+                <ng-container matColumnDef="valor">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Predicción (unidad) </th>
+                    <td mat-cell *matCellDef="let row"> {{row.valor | number:'1.0-0' }} und.</td>
+                </ng-container>
+
+                <!-- Progress Column -->
+                <ng-container matColumnDef="valorkg">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Predicción (kg) </th>
+                    <td mat-cell *matCellDef="let row"> {{row.valor*(2.55)/(9) | number:'1.1-2' }} kg</td>
+                </ng-container>
+
+                <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+                    <td mat-cell *matCellDef="let row">
+                        <button mat-icon-button color="primary" (click)="obtenerPrediccionKg(row)">
+                            <mat-icon>assignment_turned_in</mat-icon>
+                        </button>
+                        <!--<button mat-icon-button color="primary" (click)="generarReporte(row._id)">
+                            <mat-icon>picture_as_pdf</mat-icon>
+                        </button>-->
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                <!-- Row shown when there is no matching data. -->
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                </tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+        </div>
+    </div>
+    <br>
+    <!--<div class="row">
         <div class="col">
             <div class="div card">
                 <div class="card-header">
@@ -27,7 +85,38 @@
                 </div>
             </div>
         </div>
+    </div>-->
+    <mat-divider></mat-divider>
+    <br>
+
+    <div class="container">
+        <h2>Resultados Gráficos</h2>
+        <mat-card class="example-card">
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>Long-Short Term Memory (LSTM)</mat-card-title>
+                <mat-card-subtitle>Red Neuronal Artifical</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image [src]="imageToShow" alt="resultado">
+
+            <mat-card-content>
+                <p>
+                    Representación gráfica del ejercicio de la venta de platos como muestra real (Línea <strong style="color: red;">Roja</strong>) y su predicción (Línea <strong style="color: blue;">Azul</strong>) respecto de la numeración de días,
+                </p>
+                <p>0 = Lunes, 1 = Martes, 2 = Miércoles, 3 = Jueves, 4 = Viernes, 5 = Sábado, 6 = Domingo, ... </p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button>LIKE</button>
+                <button mat-button>DOWNLOAD</button>
+            </mat-card-actions>
+            <mat-card-footer>
+                <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            </mat-card-footer>
+        </mat-card>
+
+
     </div>
+    <!--
     <hr>
     <h2>Operaciones</h2>
     <div class="container">
@@ -48,7 +137,7 @@
         <ng-template #noImageFound>
             <img src="fallbackImage.png" alt="Fallbackimage">
         </ng-template>
-    </div>
+    </div>-->
 
     <!--
     <div class="row">

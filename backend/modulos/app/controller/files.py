@@ -5,14 +5,15 @@ from flask import request, jsonify,send_from_directory
 from werkzeug.utils import secure_filename
 from app import app,mongo
 from flask_cors import cross_origin
+import time 
 
 
 from datetime import datetime
 
 
-now = datetime.now()
-codigo1 = str(now)
-cadena_codigo = codigo1.replace(':','').replace('-','').replace(' ','')
+#now = datetime.now()
+#codigo1 = str(now)
+#cadena_codigo = codigo1.replace(':','').replace('-','').replace(' ','')
 
 
 ROOT_PATH = environ.get('ROOT_PATH')
@@ -29,6 +30,8 @@ def allowed_file(file):
 app.config["UPLOAD_FOLDER"]="./modulos/model/MachineLearning/NeuralNets/NeuralNetwork/public/uploads"
 
 path_file = getcwd() + "/modulos/model/MachineLearning/NeuralNets/NeuralNetwork/public/images/"
+path_file_modelo = getcwd() + "/modulos/model/MachineLearning/NeuralNets/NeuralNetwork/public/docs/modeloBin/"
+
 
 
 #SUBIR ARCHIVO MUESTRA
@@ -48,7 +51,7 @@ def upload():
         return jsonify({"transaccion":False,"message":"Archivo no se subio, hubo un error"})
     
 
-# LISTAR ARCHIVOS DEL DIRECTORIO
+#  GET DIRECTORIO DE IMAGENER
 @cross_origin
 @app.route('/files/directorio-images', methods = ['GET'])
 def get_directorio():
@@ -60,20 +63,20 @@ def get_directorio():
              
     return jsonify({"data":imagenes})
 
-#ENVIAR IMAGEN AL NAVEGADOR EL ARCHIVO
+# GET IMAGEN 
 @cross_origin
 @app.route("/images/<string:name_file>",methods = ['GET'])
 def get_file(name_file):
     return send_from_directory(path_file,path=name_file,as_attachment=False)
 
 
-#DESCARGAR EL ARCHIVO
+# DOWNLOAD IMAGE
 @cross_origin
 @app.route("/images/download/<string:name_file>",methods = ['GET'])
 def download_file(name_file):
     return send_from_directory(path_file,path=name_file,as_attachment=True)
 
-#BORRAR EL ARCHIVO
+# DELETE IMAGE
 @cross_origin
 @app.route("/images/delete", methods = ['DELETE'])
 def delete_file():
@@ -90,3 +93,27 @@ def delete_file():
 
     
 
+# GET DIRECTORIO MODELOS
+@cross_origin
+@app.route('/files/directorio-modelo', methods = ['GET'])
+def get_directorio_modelo():
+    
+    contenido = listdir(path_file_modelo)
+    modelos = []
+    
+    for fichero in contenido:
+        if path.isfile(path.join(path_file_modelo, fichero)) and fichero.endswith('.h5'):
+            ti_c = path.getctime(path_file_modelo+fichero)
+            c_ti = time.ctime(ti_c)
+            ti_m = path.getmtime(path_file_modelo+fichero)
+            u_ti = time.ctime(ti_m)
+            size = path.getsize(path_file_modelo+fichero)
+            modelodic = {'nombre':fichero,'fechaC':c_ti,'fechaU':u_ti,'tamaño':size}
+            modelos.append(modelodic)  
+    return jsonify({"data":modelos})
+
+# GET MODELO 
+@cross_origin
+@app.route("/modelo/<string:name_file>",methods = ['GET'])
+def get_modelo(name_file):
+    return send_from_directory(path_file_modelo,path=name_file,as_attachment=False)
