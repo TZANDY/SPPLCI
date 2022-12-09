@@ -65,7 +65,7 @@
 
         <mat-radio-group formControlName="estado" class="example-radio-group">
             <mat-label>Estado del requerimiento</mat-label>
-            <mat-radio-button class="example-radio-button" *ngFor="let estado of estadoRequerimiento" [value]="estado">
+            <mat-radio-button class="example-radio-button" *ngFor="let estado of estadoRequerimiento" [value]="estado" [disabled]="false">
                 {{estado}}
             </mat-radio-button>
         </mat-radio-group>

@@ -33,16 +33,26 @@ def new_copy_files():
     codigo1 = str(now)
     cadena_codigo = codigo1.replace(':','').replace('-','').replace(' ','')
     try:
-        filename = 'test.xlsx'
+        filename = 'test.csv'
         imagename = 'test.jpg'
+        index_val_accuracy='index_val_accuracy.jpg'
+        index_val_loss ='index_val_loss.jpg'
+        index_loss ='index_loss.jpg'
+
         shutil.copy(path_file_muestra+filename,path_file_muestra+str(cadena_codigo[0:14])+"-"+filename)
         shutil.copy(path_file_image+imagename,path_file_image+str(cadena_codigo[0:14])+"-"+imagename)
-        if os.path.isfile(path_file_muestra + filename ) == False | os.path.isfile(path_file_image + imagename ) == False:
+        shutil.copy(path_file_image+index_val_accuracy,path_file_image+str(cadena_codigo[0:14])+"-"+index_val_accuracy)
+        shutil.copy(path_file_image+index_val_loss,path_file_image+str(cadena_codigo[0:14])+"-"+index_val_loss)
+        shutil.copy(path_file_image+index_loss,path_file_image+str(cadena_codigo[0:14])+"-"+index_loss)
+        if os.path.isfile(path_file_muestra + filename ) == False | os.path.isfile(path_file_image + imagename ) == False| os.path.isfile(path_file_image + index_val_accuracy ) == False| os.path.isfile(path_file_image + index_val_loss ) == False| os.path.isfile(path_file_image + index_loss ) == False:
             return jsonify({"message":"Archivo no encontrado"})
         else:
             try:
                 os.remove(path_file_muestra+filename)
                 os.remove(path_file_image+imagename)
+                os.remove(path_file_image+index_val_accuracy)
+                os.remove(path_file_image+index_val_loss)
+                os.remove(path_file_image+index_loss)
                 return jsonify({'status':'200'})
             except OSError:
                 return jsonify({"ERROR":OSError,"status":"404"})

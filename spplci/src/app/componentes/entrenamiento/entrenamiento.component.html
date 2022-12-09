@@ -4,18 +4,16 @@
     <br>
 
     <div class="row">
-        <h3>Importar Muestra </h3>
-        <br>
-
-
-        <br>
-        <div class="col-lg-5" class="custom-file">
-            <input id="uploadFile" type="file" (change)="ReadExcel($event)" multiple="false" />
-            <br>
-            <br>
+        <div class="container">
+            <h2>Importar Muestra </h2>
+            <div class="col-lg-5" class="custom-file">
+                <input id="uploadFile" type="file" (change)="ReadExcel($event)" multiple="false" required/>
+                <br>
+                <br>
+            </div>
         </div>
         <br>
-        <div>
+        <div class="container">
             <ngb-alert id="uno" type="success" [dismissible]="true" (close)="cerrar('uno')">
                 <strong>¡Recordatorio!</strong> El nombre de la muestra debe ser <strong>"test.csv"</strong>.
             </ngb-alert>
@@ -34,59 +32,61 @@
 
 
     <div class="row">
-        <h3>Vista previa de la muestra</h3>
         <div class="container">
+            <h2>Vista previa de la muestra</h2>
+            <div class="container">
 
 
-            <cdk-virtual-scroll-viewport itemSize="8">
-                <table id="example" class="table table-striped table-bordered">
-                    <thead>
+                <cdk-virtual-scroll-viewport itemSize="8">
+                    <table id="example" class="table table-striped table-bordered">
+                        <thead>
 
-                    </thead>
-                    <tbody>
+                        </thead>
+                        <tbody>
 
-                        <tr *ngFor="let row of ExcelData">
-                            <!--    <th scope="row">{{row.INo}}</th>
+                            <tr *ngFor="let row of ExcelData">
+                                <!--    <th scope="row">{{row.INo}}</th>
                         <td>{{row.Insumo}}</td>
                         <td>{{row.Venta}}</td>
                         <td>{{row.Produccion}}</td>
                         <td>{{row.Fecha}}</td>-->
-                            <td *ngFor="let cell of row">
-                                {{cell}}
-                            </td>
-                        </tr>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <th> Fecha </th>
-                            <th> Día </th>
-                            <th> Mes </th>
-                            <th> Venta </th>
-                            <th> Codigo de insumo </th>
-                        </tr>
-                    </tfoot>
-                </table>
-            </cdk-virtual-scroll-viewport>
+                                <td *ngFor="let cell of row">
+                                    {{cell}}
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th> Fecha </th>
+                                <th> Día </th>
+                                <th> Mes </th>
+                                <th> Venta </th>
+                                <th> Codigo de insumo </th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </cdk-virtual-scroll-viewport>
+            </div>
         </div>
     </div>
     <hr>
     <br>
-    <div class="btn-group">
-        <div class="row-lg-2">
-            <button mat-raised-button color="primary" (click)="sendFile()">Enviar muestra</button>
-        </div>
-        <div class="row-lg-2">
-            <button mat-raised-button color="warn" (click)="entrenar()">Entrenar muestra</button>
-        </div>
+    <div class="container">
+        <div class="btn-group">
+            <div style="padding-right: 10px;">
+                <button mat-raised-button color="primary" (click)="sendFile()">Enviar muestra</button>
+            </div>
+            <div style="padding-right: 10px;">
+                <button mat-raised-button color="warn" (click)="entrenar()">Entrenar muestra</button>
+            </div>
 
-        <div class="row-lg-2">
-            <button mat-raised-button color="accent" (click)="nuevo()">Nuevo Entrenamiento</button>
+            <div>
+                <button mat-raised-button color="accent" (click)="nuevo()">Nuevo Entrenamiento</button>
+            </div>
         </div>
     </div>
     <br>
-
-    <br>
-    <div class="row">
+    <div class="container">
         <ngb-alert [dismissible]="false">
             <strong>¡Advertencia!</strong> Recuerde que los registros deben corresponder a datos extraidos de fuentes confiables.
         </ngb-alert>
@@ -101,10 +101,8 @@
 
     <div class="row">
         <div class="col-lg-4">
-
             <br>
             <br>
-
             <!-- Modal -->
             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog">

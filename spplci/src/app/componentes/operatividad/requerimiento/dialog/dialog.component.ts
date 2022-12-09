@@ -62,14 +62,10 @@ export class DialogComponent implements OnInit {
     if (this.email.hasError('required')) {
       return 'Debe ingresar un correo válido';
     }
-
     return this.email.hasError('email') ? 'Not a valid email' : '';
   }
 
-  
-
   nuevoRequerimiento(){
-    
     if(!this.editData){
       this.requerimientoArray=this.requerimientoForm.value;
       if(this.requerimientoForm.valid){
@@ -77,6 +73,7 @@ export class DialogComponent implements OnInit {
         .subscribe({
           next:(res)=>{
             alert("Requerimiento generado con éxito");
+            console.log(res);
             this.requerimientoForm.reset();
             this.dialogRef.close('save')
           },

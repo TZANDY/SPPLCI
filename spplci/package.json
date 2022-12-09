@@ -25,6 +25,7 @@
     "@ng-bootstrap/ng-bootstrap": "^10.0.0",
     "@swimlane/ngx-charts": "^20.1.0",
     "bootstrap": "^4.6.2",
+    "mat-table-exporter": "^10.2.4",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "xlsx": "^0.18.5",

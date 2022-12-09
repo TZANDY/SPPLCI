@@ -21,6 +21,19 @@ export class PrediccionService {
     return this.http.get(`${this.BASE_URL_IMG}/test.jpg`,{responseType: 'blob'})
   }
 
+  getimage_indicador_val_accuracy():Observable<Blob>{
+    return this.http.get(`${this.BASE_URL_IMG}/index_val_accuracy.jpg`,{responseType: 'blob'})
+  }
+
+  getimage_indicador_val_loss():Observable<Blob>{
+    return this.http.get(`${this.BASE_URL_IMG}/index_val_loss.jpg`,{responseType: 'blob'})
+  }
+
+  getimage_indicador_loss():Observable<Blob>{
+    return this.http.get(`${this.BASE_URL_IMG}/index_loss.jpg`,{responseType: 'blob'})
+  }
+  
+
   deleteimage(){
 
   }

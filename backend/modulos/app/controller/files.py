@@ -29,6 +29,7 @@ def allowed_file(file):
 
 app.config["UPLOAD_FOLDER"]="./modulos/model/MachineLearning/NeuralNets/NeuralNetwork/public/uploads"
 
+path_file_muestra = getcwd() + "./modulos/model/MachineLearning/NeuralNets/NeuralNetwork/public/uploads/"
 path_file = getcwd() + "/modulos/model/MachineLearning/NeuralNets/NeuralNetwork/public/images/"
 path_file_modelo = getcwd() + "/modulos/model/MachineLearning/NeuralNets/NeuralNetwork/public/docs/modeloBin/"
 
@@ -51,17 +52,7 @@ def upload():
         return jsonify({"transaccion":False,"message":"Archivo no se subio, hubo un error"})
     
 
-#  GET DIRECTORIO DE IMAGENER
-@cross_origin
-@app.route('/files/directorio-images', methods = ['GET'])
-def get_directorio():
-    contenido = listdir(path_file)
-    imagenes = []
-    for fichero in contenido:
-        if path.isfile(path.join(path_file, fichero)) and fichero.endswith('.jpg'):
-            imagenes.append(fichero)
-             
-    return jsonify({"data":imagenes})
+
 
 # GET IMAGEN 
 @cross_origin
@@ -100,6 +91,7 @@ def get_directorio_modelo():
     
     contenido = listdir(path_file_modelo)
     modelos = []
+    n=1
     
     for fichero in contenido:
         if path.isfile(path.join(path_file_modelo, fichero)) and fichero.endswith('.h5'):
@@ -108,12 +100,55 @@ def get_directorio_modelo():
             ti_m = path.getmtime(path_file_modelo+fichero)
             u_ti = time.ctime(ti_m)
             size = path.getsize(path_file_modelo+fichero)
-            modelodic = {'nombre':fichero,'fechaC':c_ti,'fechaU':u_ti,'tamaño':size}
-            modelos.append(modelodic)  
+            modelodic = {'ord':n,'nombre':fichero,'fechaC':c_ti,'fechaU':u_ti,'size':size}
+            modelos.append(modelodic)
+            n+=1  
     return jsonify({"data":modelos})
+
+# GET DIRECTORIO MUESTRAS 
+@cross_origin
+@app.route('/files/directorio-muestra', methods = ['GET'])
+def get_directorio_muestra():
+    
+    contenido = listdir(path_file_muestra)
+    muestras = []
+    n=1
+    
+    for fichero in contenido:
+        if path.isfile(path.join(path_file_muestra, fichero)) and fichero.endswith('.csv'):
+            ti_c = path.getctime(path_file_muestra+fichero)
+            c_ti = time.ctime(ti_c)
+            ti_m = path.getmtime(path_file_muestra+fichero)
+            u_ti = time.ctime(ti_m)
+            size = path.getsize(path_file_muestra+fichero)
+            modelodic = {'ord':n,'nombre':fichero,'fechaC':c_ti,'fechaU':u_ti,'size':size}
+            muestras.append(modelodic)
+            n+=1  
+    return jsonify({"data":muestras})
+
+#  GET DIRECTORIO DE IMAGENER
+@cross_origin
+@app.route('/files/directorio-images', methods = ['GET'])
+def get_directorio():
+    contenido = listdir(path_file)
+    imagenes = []
+    n=1
+    for fichero in contenido:
+        if path.isfile(path.join(path_file, fichero)) and fichero.endswith('.jpg'):
+            ti_c = path.getctime(path_file+fichero)
+            c_ti = time.ctime(ti_c)
+            ti_m = path.getmtime(path_file+fichero)
+            u_ti = time.ctime(ti_m)
+            size = path.getsize(path_file+fichero)
+            modelodic = {'ord':n,'nombre':fichero,'fechaC':c_ti,'fechaU':u_ti,'size':size}
+            imagenes.append(modelodic)
+            n+=1  
+             
+    return jsonify({"data":imagenes})
 
 # GET MODELO 
 @cross_origin
 @app.route("/modelo/<string:name_file>",methods = ['GET'])
 def get_modelo(name_file):
     return send_from_directory(path_file_modelo,path=name_file,as_attachment=False)
+

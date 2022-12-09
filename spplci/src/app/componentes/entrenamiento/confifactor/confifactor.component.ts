@@ -21,12 +21,12 @@ export class ConfifactorComponent implements OnInit {
 
   task: Task = {
     name: 'Estaciones astronómica',
-    completed: false,
+    completed: true,
     color: 'primary',
     subtasks: [
       {name: 'Invierno', completed: true, color: 'accent'},
-      {name: 'Primavera', completed: false, color: 'accent'},
-      {name: 'Verano', completed: false, color: 'accent'},
+      {name: 'Primavera', completed: true, color: 'accent'},
+      {name: 'Verano', completed: true, color: 'accent'},
       {name: 'Otoño', completed: true, color: 'accent'},
     ],
   };

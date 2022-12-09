@@ -7,16 +7,15 @@ table {
     width: 100%;
 }
 
-td,
-th {
-    width: 25%;
-}
-
 .example-card {
-    max-width: 60%;
+    max-width: 100%;
 }
 
 .example-header-image {
     background-image: url('https://elrincondelcapitannemo.files.wordpress.com/2021/09/arn.jpg?w=1024');
     background-size: cover;
+}
+
+mat-grid-tile {
+    background: rgb(255, 255, 255);
 }

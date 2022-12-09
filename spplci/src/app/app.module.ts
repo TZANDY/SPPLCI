@@ -49,13 +49,14 @@ import { MatGridListModule} from '@angular/material/grid-list';
 import { MatCardModule} from '@angular/material/card';
 import { MatExpansionModule} from '@angular/material/expansion';
 import { MatProgressBarModule} from '@angular/material/progress-bar';
-
+import { MatTabsModule} from '@angular/material/tabs';
 
 
 import { MatSortModule} from '@angular/material/sort';
 import { DialogImagenComponent } from './componentes/operatividad/prediccion/dialog-imagen/dialog-imagen.component';
 import { ResultadosService } from './servicios/resultados.service';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { HistoricosService } from './servicios/historicos.service';
 
 
 
@@ -111,6 +112,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     ReactiveFormsModule,
     MatProgressBarModule,
     NgxChartsModule,
+    MatTabsModule,
         
     // Import the module into the application, with configuration
     AuthModule.forRoot({
@@ -121,7 +123,14 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     }),
     BrowserAnimationsModule,
   ],
-  providers: [UsuarioService,EntrenamodeloService,PrediccionService,RequerimientService,ResultadosService],
+  providers: [
+    UsuarioService,
+    EntrenamodeloService,
+    PrediccionService,
+    RequerimientService,
+    ResultadosService,
+    HistoricosService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { 
